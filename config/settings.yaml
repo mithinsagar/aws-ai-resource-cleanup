@@ -1,0 +1,32 @@
+# AWS AI Resource Cleanup - Configuration
+# Author: Mithin Sagar S
+
+aws:
+  profile: "default"
+  region: "us-east-1"
+
+cleanup:
+  dry_run: true
+  grace_period_days: 7
+  notification_enabled: true
+
+thresholds:
+  ec2_stopped_days: 90
+  ebs_snapshot_days: 90
+  iam_inactive_days: 180
+  cloudwatch_log_days: 365
+  key_pair_days: 90
+
+logging:
+  level: "INFO"
+  file: "logs/cleanup.log"
+
+dashboard:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+
+scheduler:
+  enabled: false
+  interval_hours: 24
+  cron_expression: "0 2 * * 0"

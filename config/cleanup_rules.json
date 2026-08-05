@@ -1,0 +1,49 @@
+{
+  "rules": [
+    {
+      "resource_type": "ec2_instance",
+      "condition": "stopped",
+      "max_age_days": 90,
+      "action": "terminate",
+      "description": "Terminate EC2 instances stopped for more than 90 days"
+    },
+    {
+      "resource_type": "ebs_snapshot",
+      "condition": "age_exceeded",
+      "max_age_days": 90,
+      "action": "delete",
+      "description": "Delete EBS snapshots older than 90 days"
+    },
+    {
+      "resource_type": "security_group",
+      "condition": "unused",
+      "action": "delete",
+      "description": "Delete security groups with no attached network interfaces"
+    },
+    {
+      "resource_type": "iam_user",
+      "condition": "inactive",
+      "max_age_days": 180,
+      "action": "delete",
+      "description": "Delete IAM users inactive for more than 180 days"
+    },
+    {
+      "resource_type": "cloudwatch_log_group",
+      "condition": "stale",
+      "max_age_days": 365,
+      "action": "delete",
+      "description": "Delete CloudWatch log groups with no ingestion for over 1 year"
+    },
+    {
+      "resource_type": "key_pair",
+      "condition": "age_exceeded",
+      "max_age_days": 90,
+      "action": "delete",
+      "description": "Delete key pairs older than 90 days"
+    }
+  ],
+  "exclusions": {
+    "tags": ["do-not-delete", "production", "critical"],
+    "resource_ids": []
+  }
+}

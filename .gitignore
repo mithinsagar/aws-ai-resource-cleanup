@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+env/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# AWS credentials (NEVER commit these)
+*.pem
+credentials
+aws_credentials.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/*.log
+*.log
+
+# ML artifacts
+ml/model.pkl
+ml/*.joblib
+ml/*.h5
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Reports output
+reports/output/
+*.pdf
+!docs/*.pdf
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# pytest
+.pytest_cache/
+
+# Node (dashboard)
+node_modules/

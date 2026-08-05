@@ -1,0 +1,17 @@
+{
+  "rule_name": "aws-ai-resource-cleanup-weekly",
+  "description": "Triggers the AWS AI Resource Cleanup Lambda function every Sunday at 2:00 AM UTC",
+  "schedule_expression": "cron(0 2 ? * SUN *)",
+  "state": "ENABLED",
+  "targets": [
+    {
+      "id": "cleanup-lambda-target",
+      "arn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:aws-ai-resource-cleanup",
+      "input": {
+        "source": "eventbridge",
+        "mode": "cleanup",
+        "dry_run": false
+      }
+    }
+  ]
+}

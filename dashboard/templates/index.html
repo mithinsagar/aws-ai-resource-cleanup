@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS AI Resource Cleanup - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AWS AI Resource Cleanup</div>
+        <div class="nav-links">
+            <a href="/" class="active">Dashboard</a>
+            <a href="/resources">Resources</a>
+            <a href="/recommendations">Recommendations</a>
+            <a href="/reports">Reports</a>
+        </div>
+    </nav>
+    <main class="container">
+        <h1>Dashboard</h1>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>EC2 Instances</h3>
+                <p id="ec2-count">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>S3 Buckets</h3>
+                <p id="s3-count">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>EBS Snapshots</h3>
+                <p id="ebs-count">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Idle Resources</h3>
+                <p id="idle-count">Loading...</p>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Idle Resources Detected</h2>
+            <div id="idle-details">Loading analysis...</div>
+        </div>
+    </main>
+    <footer>
+        <p>AWS AI Resource Cleanup v1.0.0 | Author: Mithin Sagar S</p>
+    </footer>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

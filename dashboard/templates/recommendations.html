@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - AWS AI Resource Cleanup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AWS AI Resource Cleanup</div>
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+            <a href="/resources">Resources</a>
+            <a href="/recommendations" class="active">Recommendations</a>
+            <a href="/reports">Reports</a>
+        </div>
+    </nav>
+    <main class="container">
+        <h1>AI-Powered Recommendations</h1>
+        <div class="section">
+            <p>The AI model analyzes resource utilization patterns and recommends one of three actions for each resource: <strong>Keep</strong>, <strong>Review</strong>, or <strong>Delete</strong>.</p>
+            <div id="recommendations-list">Loading recommendations...</div>
+        </div>
+    </main>
+    <footer>
+        <p>AWS AI Resource Cleanup v1.0.0 | Author: Mithin Sagar S</p>
+    </footer>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

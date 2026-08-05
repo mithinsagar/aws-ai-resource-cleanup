@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - AWS AI Resource Cleanup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AWS AI Resource Cleanup</div>
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+            <a href="/resources">Resources</a>
+            <a href="/recommendations">Recommendations</a>
+            <a href="/reports" class="active">Reports</a>
+        </div>
+    </nav>
+    <main class="container">
+        <h1>Cleanup Reports</h1>
+        <div class="section">
+            <h2>Generate Report</h2>
+            <div class="button-group">
+                <button onclick="generateReport('pdf')">Download PDF Report</button>
+                <button onclick="generateReport('csv')">Export as CSV</button>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Recent Reports</h2>
+            <div id="report-history">No reports generated yet.</div>
+        </div>
+    </main>
+    <footer>
+        <p>AWS AI Resource Cleanup v1.0.0 | Author: Mithin Sagar S</p>
+    </footer>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
