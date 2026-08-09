@@ -21,7 +21,7 @@
 
 ## Overview
 
-Cloud infrastructure sprawl is a real problem. Developers spin up EC2 instances, create EBS snapshots, add IAM users for temporary access, and then forget about them. These orphaned resources silently inflate AWS bills and expose unused access points as security risks.
+Cloud Infrastructure sprawl is a real problem. Developers spin up EC2 instances, create EBS snapshots, add IAM users for temporary access, and then forget about them. These orphaned resources silently inflate AWS bills and expose unused access points as security risks.
 
 **AWS AI Resource Cleanup** solves this by automatically scanning your AWS account, identifying idle and unused resources based on configurable thresholds, and cleaning them up safely with dry-run previews, AI-powered recommendations, and detailed reporting.
 
@@ -272,7 +272,7 @@ This runs the cleanup at intervals defined in `settings.yaml` and keeps running 
 This project accompanies the paper:
 
 > **Automated AWS Resource Cleanup for Optimization of Cost and Security**
-> S. Mithin Sagar, Vellore Institute of Technology, Chennai
+> S. Mithin Sagar, Vellore Institute of Technology, Chennai Campus
 > Presented at ICANDIT 2026 (2nd International Conference on Advanced Nexus of Data and Information Technology)
 
 ---
