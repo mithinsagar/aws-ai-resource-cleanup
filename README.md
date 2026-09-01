@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/AWS-Boto3-orange?style=flat-square&logo=amazonaws" />
   <img src="https://img.shields.io/badge/ML-scikit--learn-green?style=flat-square&logo=scikitlearn" />
   <img src="https://img.shields.io/badge/dashboard-Flask-lightgrey?style=flat-square&logo=flask" />
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square" />
 </p>
 
 ---
@@ -279,7 +279,7 @@ This project accompanies the paper:
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
 
 ---
 
