@@ -166,7 +166,7 @@ aws-ai-resource-cleanup/
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/aws-ai-resource-cleanup.git
+git clone https://github.com/mithinsagar/aws-ai-resource-cleanup.git
 cd aws-ai-resource-cleanup
 pip install -r requirements.txt
 ```
