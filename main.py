@@ -13,7 +13,13 @@ Usage:
 import argparse
 import sys
 
-from config import SETTINGS, CLEANUP_RULES, DRY_RUN
+from config import (
+    SETTINGS,
+    CLEANUP_RULES,
+    DRY_RUN,
+    AWS_MAX_RETRY_ATTEMPTS,
+    AWS_RETRY_MODE,
+)
 from aws.aws_session import AWSSession
 from aws.ec2_manager import EC2Manager
 from aws.ebs_manager import EBSManager
@@ -37,6 +43,8 @@ def build_services():
     session = AWSSession(
         profile_name=SETTINGS["aws"]["profile"],
         region_name=SETTINGS["aws"]["region"],
+        max_attempts=AWS_MAX_RETRY_ATTEMPTS,
+        retry_mode=AWS_RETRY_MODE,
     )
     return {
         "session": session,

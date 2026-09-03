@@ -28,6 +28,8 @@ CLEANUP_RULES = load_cleanup_rules()
 
 AWS_PROFILE = SETTINGS.get("aws", {}).get("profile", "default")
 AWS_REGION = SETTINGS.get("aws", {}).get("region", "us-east-1")
+AWS_MAX_RETRY_ATTEMPTS = SETTINGS.get("aws", {}).get("max_retry_attempts", 5)
+AWS_RETRY_MODE = SETTINGS.get("aws", {}).get("retry_mode", "standard")
 DRY_RUN = SETTINGS.get("cleanup", {}).get("dry_run", True)
 LOG_LEVEL = SETTINGS.get("logging", {}).get("level", "INFO")
 DASHBOARD_PORT = SETTINGS.get("dashboard", {}).get("port", 5000)
