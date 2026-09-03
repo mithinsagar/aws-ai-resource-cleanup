@@ -4,6 +4,8 @@
 aws:
   profile: "default"
   region: "us-east-1"
+  max_retry_attempts: 5
+  retry_mode: "standard"
 
 cleanup:
   dry_run: true

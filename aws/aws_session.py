@@ -4,15 +4,25 @@ Author: Mithin Sagar S
 """
 
 import boto3
+from botocore.config import Config
 from botocore.exceptions import ProfileNotFound, NoCredentialsError
 from utils.logger import log
 
 
 class AWSSession:
-    def __init__(self, profile_name="default", region_name="us-east-1"):
+    def __init__(
+        self,
+        profile_name="default",
+        region_name="us-east-1",
+        max_attempts=5,
+        retry_mode="standard",
+    ):
         self.profile_name = profile_name
         self.region_name = region_name
         self._session = None
+        self._client_config = Config(
+            retries={"max_attempts": max_attempts, "mode": retry_mode}
+        )
 
     def _create_session(self):
         try:
@@ -42,7 +52,7 @@ class AWSSession:
         return self._session
 
     def client(self, service_name):
-        return self.session.client(service_name)
+        return self.session.client(service_name, config=self._client_config)
 
     def resource(self, service_name):
-        return self.session.resource(service_name)
+        return self.session.resource(service_name, config=self._client_config)
