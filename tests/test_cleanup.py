@@ -57,6 +57,43 @@ class TestCleanupEngine(unittest.TestCase):
         self.assertEqual(summary["by_service"]["ec2"], 2)
         self.assertEqual(summary["by_service"]["ebs"], 1)
 
+    def test_full_cleanup_skips_dynamodb_when_not_provided(self):
+        from cleanup.cleanup_engine import CleanupEngine
+
+        self.ec2_cleanup.execute.return_value = []
+        self.ebs_cleanup.execute.return_value = []
+        self.s3_cleanup.execute.return_value = []
+        self.rds_cleanup.execute.return_value = []
+
+        engine = CleanupEngine(
+            self.ec2_cleanup, self.ebs_cleanup, self.s3_cleanup, self.rds_cleanup,
+            dry_run=True,
+        )
+        results = engine.run_full_cleanup()
+
+        self.assertEqual(results, [])
+
+    def test_full_cleanup_includes_dynamodb_when_provided(self):
+        from cleanup.cleanup_engine import CleanupEngine
+
+        self.ec2_cleanup.execute.return_value = []
+        self.ebs_cleanup.execute.return_value = []
+        self.s3_cleanup.execute.return_value = []
+        self.rds_cleanup.execute.return_value = []
+        dynamodb_cleanup = MagicMock()
+        dynamodb_cleanup.execute.return_value = [
+            {"service": "dynamodb", "action": "dry_run", "table_name": "sessions"}
+        ]
+
+        engine = CleanupEngine(
+            self.ec2_cleanup, self.ebs_cleanup, self.s3_cleanup, self.rds_cleanup,
+            dynamodb_cleanup=dynamodb_cleanup, dry_run=True,
+        )
+        results = engine.run_full_cleanup()
+
+        self.assertEqual(len(results), 1)
+        dynamodb_cleanup.execute.assert_called_once_with(dry_run=True)
+
 
 if __name__ == "__main__":
     unittest.main()

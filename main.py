@@ -27,6 +27,7 @@ from aws.s3_manager import S3Manager
 from aws.iam_manager import IAMManager
 from aws.cloudwatch_manager import CloudWatchManager
 from aws.rds_manager import RDSManager
+from aws.dynamodb_manager import DynamoDBManager
 from analyzer.idle_detector import IdleDetector
 from analyzer.rule_engine import RuleEngine
 from cleanup.cleanup_engine import CleanupEngine
@@ -34,6 +35,7 @@ from cleanup.ec2_cleanup import EC2Cleanup
 from cleanup.ebs_cleanup import EBSCleanup
 from cleanup.s3_cleanup import S3Cleanup
 from cleanup.rds_cleanup import RDSCleanup
+from cleanup.dynamodb_cleanup import DynamoDBCleanup
 from cleanup.notification import NotificationService
 from utils.logger import log
 from utils.constants import PROJECT_NAME, VERSION
@@ -54,6 +56,7 @@ def build_services():
         "iam": IAMManager(session),
         "cloudwatch": CloudWatchManager(session),
         "rds": RDSManager(session),
+        "dynamodb": DynamoDBManager(session),
     }
 
 
@@ -74,6 +77,11 @@ def run_scan(services):
     for b in buckets:
         print(f"    - {b['name']} (created: {b['creation_date']})")
 
+    tables = services["dynamodb"].list_tables()
+    print(f"\n  DynamoDB Tables: {len(tables)} total")
+    for t in tables:
+        print(f"    - {t['table_name']} (items: {t['item_count']}, status: {t['status']})")
+
     return results
 
 
@@ -85,8 +93,11 @@ def run_cleanup(services, dry_run=True):
     ebs_cleanup = EBSCleanup(services["ebs"], thresholds.get("ebs_snapshot_days", 90))
     s3_cleanup = S3Cleanup(services["s3"])
     rds_cleanup = RDSCleanup(services["rds"])
+    dynamodb_cleanup = DynamoDBCleanup(services["dynamodb"])
 
-    engine = CleanupEngine(ec2_cleanup, ebs_cleanup, s3_cleanup, rds_cleanup, dry_run)
+    engine = CleanupEngine(
+        ec2_cleanup, ebs_cleanup, s3_cleanup, rds_cleanup, dynamodb_cleanup, dry_run
+    )
     results = engine.run_full_cleanup()
     summary = engine.get_summary()
 
