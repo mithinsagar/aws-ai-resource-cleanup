@@ -16,6 +16,7 @@ RESOURCE_TYPES = [
     "key_pair",
     "s3_bucket",
     "rds_instance",
+    "dynamodb_table",
 ]
 
 ACTIONS = {

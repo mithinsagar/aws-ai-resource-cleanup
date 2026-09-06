@@ -8,11 +8,20 @@ from utils.logger import log
 
 
 class CleanupEngine:
-    def __init__(self, ec2_cleanup, ebs_cleanup, s3_cleanup, rds_cleanup, dry_run=True):
+    def __init__(
+        self,
+        ec2_cleanup,
+        ebs_cleanup,
+        s3_cleanup,
+        rds_cleanup,
+        dynamodb_cleanup=None,
+        dry_run=True,
+    ):
         self.ec2_cleanup = ec2_cleanup
         self.ebs_cleanup = ebs_cleanup
         self.s3_cleanup = s3_cleanup
         self.rds_cleanup = rds_cleanup
+        self.dynamodb_cleanup = dynamodb_cleanup
         self.dry_run = dry_run
         self.results = []
 
@@ -34,6 +43,10 @@ class CleanupEngine:
 
         rds_results = self.rds_cleanup.execute(dry_run=self.dry_run)
         self.results.extend(rds_results)
+
+        if self.dynamodb_cleanup is not None:
+            dynamodb_results = self.dynamodb_cleanup.execute(dry_run=self.dry_run)
+            self.results.extend(dynamodb_results)
 
         log.info("Cleanup complete. %d actions taken.", len(self.results))
         return self.results

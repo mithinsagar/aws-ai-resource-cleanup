@@ -31,7 +31,7 @@ This project was developed as part of a research paper presented at the **2nd In
 
 ## Features
 
-- **Multi-Service Scanning** - EC2 instances, EBS snapshots, S3 buckets, IAM users, CloudWatch log groups, RDS instances, security groups, and key pairs
+- **Multi-Service Scanning** - EC2 instances, EBS snapshots, S3 buckets, IAM users, CloudWatch log groups, RDS instances, DynamoDB tables, security groups, and key pairs
 - **Configurable Thresholds** - YAML-based rules for age limits, inactivity periods, and exclusion tags
 - **Dry Run Mode** - Preview all deletions before executing anything
 - **AI-Powered Recommendations** - A trained Random Forest model predicts whether to keep, review, or delete each resource based on utilization metrics
@@ -97,6 +97,7 @@ aws-ai-resource-cleanup/
 │   ├── iam_manager.py               # IAM user operations
 │   ├── cloudwatch_manager.py        # CloudWatch log group operations
 │   ├── rds_manager.py               # RDS instance operations
+│   ├── dynamodb_manager.py          # DynamoDB table operations
 │   └── cost_explorer.py             # Cost analysis via AWS Cost Explorer
 │
 ├── analyzer/                        # Resource analysis and AI
@@ -112,6 +113,7 @@ aws-ai-resource-cleanup/
 │   ├── ebs_cleanup.py               # EBS cleanup logic
 │   ├── s3_cleanup.py                # S3 cleanup logic
 │   ├── rds_cleanup.py               # RDS cleanup logic
+│   ├── dynamodb_cleanup.py          # DynamoDB cleanup logic
 │   └── notification.py              # SNS notification service
 │
 ├── dashboard/                       # Web UI
